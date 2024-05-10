@@ -6,8 +6,7 @@ const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [error, setError] = useState();
-    const url = 'http://127.0.0.1:5000'
-
+    const url = 'https://cautious-barnacle-w576gg5v9r5fgjrr-5000.app.github.dev/'
 
     useEffect(() => {
         fetchTasks();
@@ -28,16 +27,21 @@ const TaskList = () => {
     };
 
 const createTask = (title) => {
-    void axios.post(`${url}/task`,{title})
+    axios.post(`${url}task`, {title}).then(() => fetchTasks())
 }
-//
-// const toggleTask = () => {
-//     axios
-// }
-//
-// const deleteTask = => {
-//     axios
-// }
+
+const updateTask = (task) => {
+    axios.put(`${url}task/${task.id}`, {done: !task.done})
+}
+
+const deleteTask = async (id) => {
+    try {
+        await axios.delete(`${url}task/${id}`)
+        setTasks(prevTasks => prevTasks.filter(task => task.id !== id))
+    } catch (error) {
+        setError(true)
+    }
+}
 
     return (
         <div className="task-list-container">
@@ -56,10 +60,12 @@ const createTask = (title) => {
                     <li key={task.id} className="task-item">
                         <input
                             type="checkbox"
-                            checked={task.done}/>
+                            checked={task.done}
+                            onClick={ ()=> updateTask(task)}/>
                         <span style={{textDecoration: task.done ? 'line-through' : 'none'}}>
                         {task.title}
                     </span>
+                    <button onClick={ ()=> deleteTask(task.id)}>Delete Task</button>
                     </li>
                 ))}
             </ul>

@@ -15,7 +15,7 @@ tasks = [
 
 app = Flask(__name__) 
 CORS(app)
-CORS(app, origins=['http://localhost:3000'])
+CORS(app, origins=['http://localhost:3000', 'https://cautious-barnacle-w576gg5v9r5fgjrr-3000.app.github.dev/'])
 
 
 @app.route("/")

@@ -21,5 +21,5 @@ Creating tasks is cool
 <ol>
     <li>pip install flask_cors</li>
     <li>pip install flask</li>
-    <li>flask --app main run</li>
+    <li>flask --app main run</li> 
 </ol>
