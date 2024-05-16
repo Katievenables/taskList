@@ -6,7 +6,7 @@ const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [error, setError] = useState();
-    const url = 'https://cautious-barnacle-w576gg5v9r5fgjrr-5000.app.github.dev/'
+    const url = 'https://ideal-potato-rj76w6gp5q7hww57-5000.app.github.dev/'
 
     useEffect(() => {
         fetchTasks();
@@ -46,7 +46,8 @@ const deleteTask = async (id) => {
     return (
         <div className="task-list-container">
             <h1>Rocket 2.0</h1>
-            <input
+           <div className="search-container"> 
+           <input
                 type="text"
                 className="task-input"
                 placeholder="Enter task"
@@ -54,6 +55,7 @@ const deleteTask = async (id) => {
                 onChange={e => setNewTask(e.target.value)}
             />
             <button onClick={ ()=> createTask(newTask)}>Add New Task</button>
+            </div>
             {error && <p className="notFound">Error, please try again!</p>}
             <ul>
                 {tasks.map(task => (
