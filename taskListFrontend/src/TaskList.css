@@ -1,12 +1,12 @@
 h1 {
   text-align: center;
 }
-.search-container {
+
+form {
   display: flex;
 }
 
 .task-list-container {
-
   width: 400px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
